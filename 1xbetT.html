@@ -1,0 +1,1492 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ITsolutionZ SIEM Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Courier New', monospace;
+            background-color: #0a0a0a;
+            color: #e0e0e0;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header */
+        header {
+            background-color: #111;
+            border: 1px solid #333;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #fff;
+            text-shadow: 0 0 10px #666;
+        }
+
+        .challenge-tag {
+            color: #999;
+            font-size: 12px;
+            border: 1px solid #444;
+            padding: 5px 10px;
+        }
+
+        /* Filters Section */
+        .filters {
+            background-color: #111;
+            border: 1px solid #333;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        .filters h3 {
+            color: #ccc;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        .filter-inputs {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 15px;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .filter-group label {
+            color: #999;
+            font-size: 11px;
+            text-transform: uppercase;
+        }
+
+        .filter-group input,
+        .filter-group select {
+            background-color: #000;
+            border: 1px solid #444;
+            color: #e0e0e0;
+            padding: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+        }
+
+        .filter-group input:focus,
+        .filter-group select:focus {
+            outline: none;
+            border-color: #666;
+        }
+
+        /* Main Content */
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            min-height: 600px;
+        }
+
+        /* Email List */
+        .email-list {
+            background-color: #111;
+            border: 1px solid #333;
+            overflow: hidden;
+        }
+
+        .email-list-header {
+            background-color: #1a1a1a;
+            padding: 10px 15px;
+            border-bottom: 1px solid #333;
+        }
+
+        .email-list-header h3 {
+            color: #ccc;
+            font-size: 14px;
+        }
+
+        .email-items {
+            overflow-y: auto;
+            max-height: 600px;
+        }
+
+        .email-item {
+            padding: 12px 15px;
+            border-bottom: 1px solid #222;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .email-item:hover {
+            background-color: #1a1a1a;
+        }
+
+        .email-item.active {
+            background-color: #222;
+            border-left: 3px solid #666;
+        }
+
+        .email-item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+
+        .email-from {
+            color: #ccc;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .email-severity {
+            font-size: 10px;
+            padding: 2px 6px;
+            border: 1px solid;
+        }
+
+        .severity-INFO {
+            color: #999;
+            border-color: #666;
+        }
+
+        .severity-WARNING {
+            color: #bbb;
+            border-color: #888;
+        }
+
+        .severity-ALERT {
+            color: #fff;
+            border-color: #ccc;
+        }
+
+        .email-subject {
+            color: #aaa;
+            font-size: 11px;
+            margin-bottom: 3px;
+        }
+
+        .email-meta {
+            color: #666;
+            font-size: 10px;
+        }
+
+        /* Email Detail Panel */
+        .email-detail {
+            background-color: #111;
+            border: 1px solid #333;
+            overflow: hidden;
+        }
+
+        .email-detail-header {
+            background-color: #1a1a1a;
+            padding: 10px 15px;
+            border-bottom: 1px solid #333;
+        }
+
+        .email-detail-header h3 {
+            color: #ccc;
+            font-size: 14px;
+        }
+
+        .email-detail-content {
+            padding: 15px;
+            overflow-y: auto;
+            max-height: 600px;
+        }
+
+        .no-selection {
+            color: #666;
+            text-align: center;
+            padding: 50px;
+            font-size: 12px;
+        }
+
+        .detail-section {
+            margin-bottom: 20px;
+        }
+
+        .detail-section h4 {
+            color: #999;
+            font-size: 11px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            border-bottom: 1px solid #222;
+            padding-bottom: 5px;
+        }
+
+        .detail-row {
+            display: grid;
+            grid-template-columns: 150px 1fr;
+            gap: 10px;
+            margin-bottom: 5px;
+            font-size: 11px;
+        }
+
+        .detail-label {
+            color: #777;
+        }
+
+        .detail-value {
+            color: #ccc;
+            word-break: break-all;
+        }
+
+        .detail-body {
+            background-color: #0a0a0a;
+            border: 1px solid #222;
+            padding: 10px;
+            color: #aaa;
+            font-size: 11px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .flag-highlight {
+            color: #fff;
+            background-color: #222;
+            padding: 2px 4px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #111;
+            border: 1px solid #333;
+            padding: 15px;
+            margin-top: 20px;
+            text-align: center;
+            color: #666;
+            font-size: 11px;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #111;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #333;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #444;
+        }
+
+        /* Stats */
+        .stats-bar {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .stat-box {
+            flex: 1;
+            background-color: #111;
+            border: 1px solid #333;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 24px;
+            color: #ccc;
+            font-weight: bold;
+        }
+
+        .stat-label {
+            font-size: 10px;
+            color: #666;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <div class="header-content">
+                <div class="logo">
+                    ▓▓▓ ITsolutionZ SIEM Dashboard ▓▓▓
+                </div>
+                <div class="challenge-tag">
+                    Challenge: what is that UI ?
+                </div>
+            </div>
+        </header>
+
+        <!-- Stats Bar -->
+        <div class="stats-bar">
+            <div class="stat-box">
+                <div class="stat-value" id="totalEmails">30</div>
+                <div class="stat-label">Total Emails</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-value" id="infoCount">20</div>
+                <div class="stat-label">Info</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-value" id="warningCount">9</div>
+                <div class="stat-label">Warning</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-value" id="alertCount">1</div>
+                <div class="stat-label">Alert</div>
+            </div>
+        </div>
+
+        <!-- Filters -->
+        <div class="filters">
+            <h3>═══ FILTERS ═══</h3>
+            <div class="filter-inputs">
+                <div class="filter-group">
+                    <label>Search (IP/From/Subject)</label>
+                    <input type="text" id="searchInput" placeholder="Type to filter...">
+                </div>
+                <div class="filter-group">
+                    <label>Severity</label>
+                    <select id="severityFilter">
+                        <option value="">All</option>
+                        <option value="INFO">INFO</option>
+                        <option value="WARNING">WARNING</option>
+                        <option value="ALERT">ALERT</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>IP Address</label>
+                    <input type="text" id="ipFilter" placeholder="192.168.0.x">
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Email List -->
+            <div class="email-list">
+                <div class="email-list-header">
+                    <h3>═══ EMAIL LOGS ═══</h3>
+                </div>
+                <div class="email-items" id="emailList">
+                    <!-- Emails will be populated by JavaScript -->
+                </div>
+            </div>
+
+            <!-- Email Detail -->
+            <div class="email-detail">
+                <div class="email-detail-header">
+                    <h3>═══ EMAIL DETAILS ═══</h3>
+                </div>
+                <div class="email-detail-content" id="emailDetail">
+                    <div class="no-selection">
+                        ┌───────────────────────────────────┐<br>
+                        │  SELECT AN EMAIL TO VIEW DETAILS  │<br>
+                        └───────────────────────────────────┘
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            ═══════════════════════════════════════════════════════════<br>
+            ITsolutionZ Security Operations Center | Powered by Custom SIEM v2.4<br>
+            Challenge: "what is that UI ?" | Find the real threat<br>
+            ═══════════════════════════════════════════════════════════
+        </footer>
+    </div>
+
+    <script>
+        // Email Database
+        const emailDatabase = [
+            {
+                id: 1,
+                from: "EL BORNI",
+                fromIP: "192.168.0.44",
+                role: "SOC Analyst",
+                to: "team@itsolutionz.local",
+                subject: "Rapport SOC mensuel",
+                date: "2026-02-10 09:15:23",
+                severity: "INFO",
+                headers: {
+                    "X-Originating-IP": "192.168.0.44",
+                    "From": "elborni@itsolutionz.local",
+                    "Reply-To": "elborni@itsolutionz.local",
+                    "SPF": "PASS",
+                    "DKIM": "PASS",
+                    "Message-ID": "<msg001@itsolutionz.local>"
+                },
+                body: `Bonjour l'équipe,
+
+Voici le rapport mensuel des activités du SOC pour janvier 2026:
+
+- 1,247 événements analysés
+- 12 incidents de sécurité traités
+- 0 intrusions confirmées
+- Temps de réponse moyen: 8 minutes
+
+Fake flag pour les curieux: Securinets_fst{N0t_Th1s_0ne_Try_Ag4in}
+
+Tous les systèmes sont opérationnels.
+
+Cordialement,
+EL BORNI - SOC Analyst`
+            },
+            {
+                id: 2,
+                from: "FERJANEYA",
+                fromIP: "192.168.0.78",
+                role: "Security Engineer",
+                to: "sysadmin@itsolutionz.local",
+                subject: "Mise à jour firewall",
+                date: "2026-02-09 14:30:11",
+                severity: "WARNING",
+                headers: {
+                    "X-Originating-IP": "192.168.0.78",
+                    "From": "ferjaneya@itsolutionz.local",
+                    "Reply-To": "ferjaneya@itsolutionz.local",
+                    "SPF": "PASS",
+                    "DKIM": "PASS",
+                    "Message-ID": "<msg002@itsolutionz.local>"
+                },
+                body: `Équipe IT,
+
+Mise à jour des règles du firewall effectuée ce matin:
+- Blocage de 15 nouvelles IPs suspectes
+- Mise à jour des signatures IDS/IPS
+- Redémarrage planifié: dimanche 3h00
+
+Test flag: Securinets_fst{W0ng_Em4il_K33p_L00king}
+
+Configuration sauvegardée et testée.
+
+FERJANEYA
+Security Engineer`
+            },
+            {
+                id: 3,
+                from: "SI HEMED",
+                fromIP: "192.168.0.100",
+                role: "Employee",
+                to: "hr@itsolutionz.local",
+                subject: "Demande de congé",
+                date: "2026-02-08 11:20:45",
+                severity: "INFO",
+                headers: {
+                    "X-Originating-IP": "192.168.0.100",
+                    "From": "sihemed@itsolutionz.local",
+                    "Reply-To": "sihemed@itsolutionz.local",
+                    "SPF": "PASS",
+                    "DKIM": "PASS",
+                    "Message-ID": "<msg003@itsolutionz.local>"
+                },
+                body: `Bonjour RH,
+
+Je souhaite poser mes congés du 15 au 22 février 2026.
+Tous mes dossiers seront transmis à mon collègue.
+
+Faux flag trouvé: Securinets_fst{N1ce_Try_But_N0}
+
+Merci de valider.
+
+SI HEMED`
+            },
+            {
+                id: 4,
+                from: "PRINTER",
+                fromIP: "192.168.10.222",
+                role: "Network Device",
+                to: "maintenance@itsolutionz.local",
+                subject: "Toner faible",
+                date: "2026-02-11 08:05:12",
+                severity: "INFO",
+                headers: {
+                    "X-Originating-IP": "192.168.10.222",
+                    "From": "printer-floor3@itsolutionz.local",
+                    "Reply-To": "maintenance@itsolutionz.local",
+                    "SPF": "PASS",
+                    "DKIM": "N/A",
+                    "Message-ID": "<msg004@printer.local>"
+                },
+                body: `[AUTOMATED MESSAGE]
+
+Printer Status Alert:
+- Device: HP LaserJet Floor 3
+- IP: 192.168.10.222
+- Status: Toner faible (15%)
+- Pages restantes: ~450
+
+Not the flag: Securinets_fst{Pr1nt3r_Is_N0t_Susp3ct}
+
+Veuillez commander un nouveau toner.
+
+---
+Notification automatique`
+            },
+            {
+                id: 5,
+                from: "EL BORNI",
+                fromIP: "192.168.0.44",
+                role: "SOC Analyst",
+                to: "security@itsolutionz.local",
+                subject: "Alerte détectée",
+                date: "2026-02-07 16:45:33",
+                severity: "WARNING",
+                headers: {
+                    "X-Originating-IP": "192.168.0.44",
+                    "From": "elborni@itsolutionz.local",
+                    "Reply-To": "elborni@itsolutionz.local",
+                    "SPF": "PASS",
+                    "DKIM": "PASS",
+                    "Message-ID": "<msg005@itsolutionz.local>"
+                },
+                body: `SECURITY TEAM,
+
+Alerte détectée sur le serveur WEB-01:
+- Type: Tentative de scan de ports
+- Source: 87.120.34.56 (externe)
+- Bloqué par le firewall
+- Aucun impact
+
+Fake alert flag: Securinets_fst{S0C_1s_S4fe}
+
+Situation sous contrôle.
+
+EL BORNI`
+            },
+            {
+                id: 6,
+                from: "FERJANEYA",
+                fromIP: "192.168.0.78",
+                role: "Security Engineer",
+                to: "management@itsolutionz.local",
+                subject: "Audit sécurité Q4",
+                date: "2026-02-06 10:30:00",
+                severity: "INFO",
+                headers: {
+                    "X-Originating-IP": "192.168.0.78",
+                    "From": "ferjaneya@itsolutionz.local",
+                    "Reply-To": "ferjaneya@itsolutionz.local",
+                    "SPF": "PASS",
+                    "DKIM": "PASS",
+                    "Message-ID": "<msg006@itsolutionz.local>"
+                },
+                body: `Management,
+
+Résultats de l'audit de sécurité Q4 2025:
+
+✓ Infrastructure réseau: CONFORME
+✓ Politique de mots de passe: CONFORME
+✓ Sauvegardes: OPÉRATIONNELLES
+✓ Pare-feu: À JOUR
+
+Decoy flag: Securinets_fst{4ud1t_Cl34n}
+
+Rapport complet en pièce jointe.
+
+FERJANEYA`
+            },
+            {
+                id: 7,
+                from: "SERVER",
+                fromIP: "4.101.2.200",
+                role: "Backup Server",
+                to: "admin@itsolutionz.local",
+                subject: "Backup completed",
+                date: "2026-02-12 03:00:18",
+                severity: "INFO",
+                headers: {
+                    "X-Originating-IP": "4.101.2.200",
+                    "From": "backup@itsolutionz.cloud",
+                    "Reply-To": "noreply@itsolutionz.cloud",
+                    "SPF": "PASS",
+                    "DKIM": "PASS",
+                    "Message-ID": "<msg007@backup.cloud>"
+                },
+                body: `[AUTOMATED BACKUP REPORT]
+
+Backup Status: SUCCESS
+Date: 2026-02-12 03:00:18 UTC
+Server: BACKUP-SRV-01 (4.101.2.200)
+
+Données sauvegardées:
+- Database: 2.4 GB
+- Files: 15.7 GB
+- Total: 18.1 GB
+
+Wrong path flag: Securinets_fst{B4ckup_N0t_H3re}
+
+Next backup: 2026-02-13 03:00:00
+
+---
+Do not reply to this automated message`
+            },
+            {
+                id: 8,
+                from: "Microsoft Security Team",
+                fromIP: "40.97.156.13",
+                role: "External - Spoofed",
+                to: "balha@itsolutionz.local",
+                subject: "[URGENT] Microsoft Account Security Alert - Action Required",
+                date: "2026-02-11 18:42:15",
+                severity: "ALERT",
+                headers: {
+                    "X-Originating-IP": "185.234.219.78",
+                    "From": "security@micros0ft-team.com",
+                    "Reply-To": "verify@1xbett-account-security.com",
+                    "SPF": "FAIL",
+                    "DKIM": "FAIL",
+                    "DMARC": "FAIL",
+                    "Message-ID": "<phish8934@malicious.server>",
+                    "X-Mailer": "PHPMailer 5.2.1",
+                    "X-Suspicious-Headers": "YES",
+                    "X-Forged-Domain": "micros0ft-team.com (note the zero)"
+                },
+                body: `Dear BALHA,
+
+We have detected unusual activity on your Microsoft 365 Business Account.
+
+Your account will be suspended within 24 hours unless you verify your identity.
+
+Suspicious login attempts:
+- Location: Nigeria, Lagos
+- IP: 102.89.34.201
+- Device: Unknown Android device
+
+PLEASE VERIFY YOUR ACCOUNT IMMEDIATELY:
+
+http://1xbett-microsoft-verify.com/secure-login?user=balha&token=A8F3C2D1
+
+Securinets_fst{I_D0n't_Kn0W_Whyy_It_D1Dn't_Al3rt!}
+
+If you don't recognize this activity, click the link above to secure your account.
+
+Thank you for your immediate attention.
+
+Microsoft Security Team
+security@microsoft.com
+
+---
+[ACCESSED BY: BALHA@192.168.0.200 - LINK CLICKED: YES]
+This email was flagged as SUSPICIOUS but delivered to inbox.`
+            },
+            {
+                id: 9,
+                from: "SI HEMED",
+                fromIP: "192.168.0.100",
+                role: "Employee",
+                to: "it-support@itsolutionz.local",
+                subject: "Problème VPN",
+                date: "2026-02-05 13:15:22",
+                severity: "INFO",
+                headers: {
+                    "X-Originating-IP": "192.168.0.100",
+                    "From": "sihemed@itsolutionz.local",
+                    "Reply-To": "sihemed@itsolutionz.local",
+                    "SPF": "PASS",
+                    "DKIM": "PASS",
+                    "Message-ID": "<msg009@itsolutionz.local>"
+                },
+                body: `Support IT,
+
+Je n'arrive pas à me connecter au VPN depuis ce matin.
+Message d'erreur: "Authentication failed"
+
+Red herring: Securinets_fst{VPN_C0nn3ct10n_F4iled}
+
+Pouvez-vous vérifier mon compte?
+
+Merci,
+SI HEMED`
+            },
+            {
+                id: 10,
+                from: "FERJANEYA",
+                fromIP: "192.168.0.78",
+                role: "Security Engineer",
+                to: "team@itsolutionz.local",
+                subject: "Formation sécurité",
+                date: "2026-02-04 09:00:00",
+                severity: "INFO",
+                headers: {
+                    "X-Originating-IP": "192.168.0.78",
+                    "From": "ferjaneya@itsolutionz.local",
+                    "Reply-To": "ferjaneya@itsolutionz.local",
+                    "SPF": "PASS",
+                    "DKIM": "PASS",
+                    "Message-ID": "<msg010@itsolutionz.local>"
+                },
+                body: `Bonjour à tous,
+
+Formation obligatoire sur la sécurité informatique:
+Date: 15 février 2026
+Lieu: Salle de conférence A
+Durée: 2 heures
+
+Sujets:
+- Phishing et ingénierie sociale
+- Gestion des mots de passe
+- Bonnes pratiques
+
+Another fake: Securinets_fst{Tr41n1ng_D4y}
+
+Présence obligatoire.
+
+FERJANEYA`
+            },
+            {
+                id: 11,
+                from: "EL BORNI",
+                fromIP: "192.168.0.44",
+                role: "SOC Analyst",
+                to: "admin@itsolutionz.local",
+                subject: "Logs système analysés",
+                date: "2026-02-03 15:20:30",
+                severity: "INFO",
+                headers: {
+                    "X-Originating-IP": "192.168.0.44",
+                    "From": "elborni@itsolutionz.local",
+                    "Reply-To": "elborni@itsolutionz.local",
+                    "SPF": "PASS",
+                    "DKIM": "PASS",
+                    "Message-ID": "<msg011@itsolutionz.local>"
+                },
+                body: `Admin,
+
+Analyse des logs système de la semaine:
+- 45,892 événements traités
+- 3 anomalies détectées (faux positifs)
+- Performance système: normale
+
+Not today: Securinets_fst{L0gs_4r3_Cl34n}
+
+RAS.
+
+EL BORNI`
+            },
+            {
+                id: 12,
+                from: "PRINTER",
+                fromIP: "192.168.10.222",
+                role: "Network Device",
+                to: "maintenance@itsolutionz.local",
+                subject: "Maintenance programmée",
+                date: "2026-02-02 07:30:00",
+                severity: "WARNING",
+                headers: {
+                    "X-Originating-IP": "192.168.10.222",
+                    "From": "printer-floor3@itsolutionz.local",
+                    "Reply-To": "maintenance@itsolutionz.local",
+                    "SPF": "PASS",
+                    "DKIM": "N/A",
+                    "Message-ID": "<msg012@printer.local>"
+                },
+                body: `[AUTOMATED MESSAGE]
+
+Maintenance programmée:
+- Date: 2026-02-14
+- Heure: 08:00 - 09:00
+- Type: Nettoyage et calibration
+
+Device flag: Securinets_fst{M41nt3n4nc3_Sch3dul3d}
+
+L'imprimante sera indisponible durant cette période.
+
+---
+Notification automatique`
+            },
+            {
+                id: 13,
+                from: "SI HEMED",
+                fromIP: "192.168.0.100",
+                role: "Employee",
+                to: "team@itsolutionz.local",
+                subject: "Réunion projet Alpha",
+                date: "2026-02-01 10:45:00",
+                severity: "INFO",
+                headers: {
+                    "X-Originating-IP": "192.168.0.100",
+                    "From": "sihemed@itsolutionz.local",
+                    "Reply-To": "sihemed@itsolutionz.local",
+                    "SPF": "PASS",
+                    "DKIM": "PASS",
+                    "Message-ID": "<msg013@itsolutionz.local>"
+                },
+                body: `Équipe,
+
+Ordre du jour de la réunion projet Alpha:
+1. Avancement des tâches
+2. Problèmes rencontrés
+3. Planning sprint suivant
+
+Meeting flag: Securinets_fst{Pr0j3ct_M33t1ng}
+
+Rendez-vous jeudi 14h00.
+
+SI HEMED`
+            },
+            {
+                id: 14,
+                from: "SERVER",
+                fromIP: "4.101.2.200",
+                role: "Backup Server",
+                to: "admin@itsolutionz.local",
+                subject: "Disk space warning",
+                date: "2026-01-31 12:00:00",
+                severity: "WARNING",
+                headers: {
+                    "X-Originating-IP": "4.101.2.200",
+                    "From": "backup@itsolutionz.cloud",
+                    "Reply-To": "noreply@itsolutionz.cloud",
+                    "SPF": "PASS",
+                    "DKIM": "PASS",
+                    "Message-ID": "<msg014@backup.cloud>"
+                },
+                body: `[SYSTEM WARNING]
+
+Disk Space Alert:
+- Server: BACKUP-SRV-01
+- Partition: /backup
+- Used: 82%
+- Available: 180 GB
+
+Storage flag: Securinets_fst{D1sk_Sp4c3_L0w}
+
+Recommandation: Purge des anciennes sauvegardes
+
+---
+Automated system notification`
+            },
+            {
+                id: 15,
+                from: "FERJANEYA",
+                fromIP: "192.168.0.78",
+                role: "Security Engineer",
+                to: "security@itsolutionz.local",
+                subject: "Patch Tuesday - Février",
+                date: "2026-01-30 08:15:00",
+                severity: "WARNING",
+                headers: {
+                    "X-Originating-IP": "192.168.0.78",
+                    "From": "ferjaneya@itsolutionz.local",
+                    "Reply-To": "ferjaneya@itsolutionz.local",
+                    "SPF": "PASS",
+                    "DKIM": "PASS",
+                    "Message-ID": "<msg015@itsolutionz.local>"
+                },
+                body: `Security Team,
+
+Patch Tuesday - Mises à jour critiques disponibles:
+- Windows Server: 8 patches
+- Applications: 12 mises à jour
+- Déploiement: ce week-end
+
+Patch flag: Securinets_fst{P4tch_Tu3sd4y_R34dy}
+
+Planification des redémarrages en cours.
+
+FERJANEYA
+Security Engineer`
+            },
+            {
+                id: 16,
+                from: "EL BORNI",
+                fromIP: "192.168.0.44",
+                role: "SOC Analyst",
+                to: "team@itsolutionz.local",
+                subject: "Weekly security digest",
+                date: "2026-01-29 14:30:00",
+                severity: "INFO",
+                headers: {
+                    "X-Originating-IP": "192.168.0.44",
+                    "From": "elborni@itsolutionz.local",
+                    "Reply-To": "elborni@itsolutionz.local",
+                    "SPF": "PASS",
+                    "DKIM": "PASS",
+                    "Message-ID": "<msg016@itsolutionz.local>"
+                },
+                body: `Team,
+
+Résumé sécurité de la semaine:
+- Incidents: 0
+- Scans détectés: 8
+- Mises à jour appliquées: 23
+
+Wrong way: Securinets_fst{W33kly_D1g3st_N0p3}
+
+EL BORNI`
+            },
+            {
+                id: 17,
+                from: "SI HEMED",
+                fromIP: "192.168.0.100",
+                role: "Employee",
+                to: "helpdesk@itsolutionz.local",
+                subject: "Mot de passe oublié",
+                date: "2026-01-28 09:15:00",
+                severity: "INFO",
+                headers: {
+                    "X-Originating-IP": "192.168.0.100",
+                    "From": "sihemed@itsolutionz.local",
+                    "Reply-To": "sihemed@itsolutionz.local",
+                    "SPF": "PASS",
+                    "DKIM": "PASS",
+                    "Message-ID": "<msg017@itsolutionz.local>"
+                },
+                body: `Helpdesk,
+
+J'ai oublié mon mot de passe de session.
+Pouvez-vous le réinitialiser?
+
+Fake here: Securinets_fst{P4ssw0rd_R3s3t}
+
+Merci,
+SI HEMED`
+            },
+            {
+                id: 18,
+                from: "FERJANEYA",
+                fromIP: "192.168.0.78",
+                role: "Security Engineer",
+                to: "security@itsolutionz.local",
+                subject: "IDS/IPS mise à jour",
+                date: "2026-01-27 16:00:00",
+                severity: "WARNING",
+                headers: {
+                    "X-Originating-IP": "192.168.0.78",
+                    "From": "ferjaneya@itsolutionz.local",
+                    "Reply-To": "ferjaneya@itsolutionz.local",
+                    "SPF": "PASS",
+                    "DKIM": "PASS",
+                    "Message-ID": "<msg018@itsolutionz.local>"
+                },
+                body: `Security,
+
+Mise à jour IDS/IPS effectuée:
+- Nouvelles signatures: 1,245
+- Règles modifiées: 87
+- Redémarrage: OK
+
+Not valid: Securinets_fst{IDS_Upd4t3d}
+
+FERJANEYA`
+            },
+            {
+                id: 19,
+                from: "SERVER",
+                fromIP: "4.101.2.200",
+                role: "Backup Server",
+                to: "admin@itsolutionz.local",
+                subject: "Weekly backup report",
+                date: "2026-01-26 03:00:00",
+                severity: "INFO",
+                headers: {
+                    "X-Originating-IP": "4.101.2.200",
+                    "From": "backup@itsolutionz.cloud",
+                    "Reply-To": "noreply@itsolutionz.cloud",
+                    "SPF": "PASS",
+                    "DKIM": "PASS",
+                    "Message-ID": "<msg019@backup.cloud>"
+                },
+                body: `[AUTOMATED REPORT]
+
+Backups cette semaine:
+- Réussis: 7/7
+- Données: 127 GB
+- Durée moyenne: 45min
+
+Decoy: Securinets_fst{B4ckup_W33kly}
+
+---
+Automated message`
+            },
+            {
+                id: 20,
+                from: "EL BORNI",
+                fromIP: "192.168.0.44",
+                role: "SOC Analyst",
+                to: "admin@itsolutionz.local",
+                subject: "Analyse trafic réseau",
+                date: "2026-01-25 11:30:00",
+                severity: "INFO",
+                headers: {
+                    "X-Originating-IP": "192.168.0.44",
+                    "From": "elborni@itsolutionz.local",
+                    "Reply-To": "elborni@itsolutionz.local",
+                    "SPF": "PASS",
+                    "DKIM": "PASS",
+                    "Message-ID": "<msg020@itsolutionz.local>"
+                },
+                body: `Admin,
+
+Analyse du trafic réseau:
+- Bande passante utilisée: 67%
+- Pics d'activité: 14h-16h
+- Anomalies: 0
+
+Nope: Securinets_fst{N3tw0rk_An4lys1s}
+
+EL BORNI`
+            },
+            {
+                id: 21,
+                from: "PRINTER",
+                fromIP: "192.168.10.222",
+                role: "Network Device",
+                to: "maintenance@itsolutionz.local",
+                subject: "Compteur pages imprimées",
+                date: "2026-01-24 08:00:00",
+                severity: "INFO",
+                headers: {
+                    "X-Originating-IP": "192.168.10.222",
+                    "From": "printer-floor3@itsolutionz.local",
+                    "Reply-To": "maintenance@itsolutionz.local",
+                    "SPF": "PASS",
+                    "DKIM": "N/A",
+                    "Message-ID": "<msg021@printer.local>"
+                },
+                body: `[AUTOMATED MESSAGE]
+
+Compteur mensuel:
+- Pages N&B: 8,452
+- Pages couleur: 1,203
+- Total: 9,655 pages
+
+Wrong device: Securinets_fst{Pr1nt_C0unt3r}
+
+---
+Notification automatique`
+            },
+            {
+                id: 22,
+                from: "SI HEMED",
+                fromIP: "192.168.0.100",
+                role: "Employee",
+                to: "team@itsolutionz.local",
+                subject: "Rapport d'activité",
+                date: "2026-01-23 15:45:00",
+                severity: "INFO",
+                headers: {
+                    "X-Originating-IP": "192.168.0.100",
+                    "From": "sihemed@itsolutionz.local",
+                    "Reply-To": "sihemed@itsolutionz.local",
+                    "SPF": "PASS",
+                    "DKIM": "PASS",
+                    "Message-ID": "<msg022@itsolutionz.local>"
+                },
+                body: `Team,
+
+Rapport mensuel:
+- Tâches complétées: 34/35
+- En cours: 1
+- Retard: 0
+
+False lead: Securinets_fst{4ct1v1ty_R3p0rt}
+
+SI HEMED`
+            },
+            {
+                id: 23,
+                from: "FERJANEYA",
+                fromIP: "192.168.0.78",
+                role: "Security Engineer",
+                to: "management@itsolutionz.local",
+                subject: "Certificats SSL",
+                date: "2026-01-22 10:20:00",
+                severity: "WARNING",
+                headers: {
+                    "X-Originating-IP": "192.168.0.78",
+                    "From": "ferjaneya@itsolutionz.local",
+                    "Reply-To": "ferjaneya@itsolutionz.local",
+                    "SPF": "PASS",
+                    "DKIM": "PASS",
+                    "Message-ID": "<msg023@itsolutionz.local>"
+                },
+                body: `Management,
+
+Certificats SSL à renouveler:
+- www.itsolutionz.local: expire 15/03/2026
+- mail.itsolutionz.local: expire 20/03/2026
+
+Action requise avant expiration.
+
+Not here: Securinets_fst{SSL_C3rt1f1c4t3s}
+
+FERJANEYA`
+            },
+            {
+                id: 24,
+                from: "EL BORNI",
+                fromIP: "192.168.0.44",
+                role: "SOC Analyst",
+                to: "security@itsolutionz.local",
+                subject: "Test de pénétration planifié",
+                date: "2026-01-21 13:00:00",
+                severity: "WARNING",
+                headers: {
+                    "X-Originating-IP": "192.168.0.44",
+                    "From": "elborni@itsolutionz.local",
+                    "Reply-To": "elborni@itsolutionz.local",
+                    "SPF": "PASS",
+                    "DKIM": "PASS",
+                    "Message-ID": "<msg024@itsolutionz.local>"
+                },
+                body: `Security Team,
+
+Test de pénétration externe:
+Date: 25 janvier 2026
+Heure: 22h00 - 02h00
+Provider: SecTest Corp
+
+Ne pas bloquer IP: 203.45.67.89
+
+Decoy: Securinets_fst{P3nT3st_Sch3dul3d}
+
+EL BORNI`
+            },
+            {
+                id: 25,
+                from: "SERVER",
+                fromIP: "4.101.2.200",
+                role: "Backup Server",
+                to: "admin@itsolutionz.local",
+                subject: "Backup verification passed",
+                date: "2026-01-20 04:15:00",
+                severity: "INFO",
+                headers: {
+                    "X-Originating-IP": "4.101.2.200",
+                    "From": "backup@itsolutionz.cloud",
+                    "Reply-To": "noreply@itsolutionz.cloud",
+                    "SPF": "PASS",
+                    "DKIM": "PASS",
+                    "Message-ID": "<msg025@backup.cloud>"
+                },
+                body: `[VERIFICATION REPORT]
+
+Vérification des backups:
+- Intégrité: OK
+- Restauration test: SUCCESS
+- Temps de récupération: 12min
+
+Wrong path: Securinets_fst{B4ckup_V3r1f1ed}
+
+---
+Automated system`
+            },
+            {
+                id: 26,
+                from: "SI HEMED",
+                fromIP: "192.168.0.100",
+                role: "Employee",
+                to: "it@itsolutionz.local",
+                subject: "Demande accès serveur dev",
+                date: "2026-01-19 09:30:00",
+                severity: "INFO",
+                headers: {
+                    "X-Originating-IP": "192.168.0.100",
+                    "From": "sihemed@itsolutionz.local",
+                    "Reply-To": "sihemed@itsolutionz.local",
+                    "SPF": "PASS",
+                    "DKIM": "PASS",
+                    "Message-ID": "<msg026@itsolutionz.local>"
+                },
+                body: `IT Team,
+
+J'ai besoin d'un accès au serveur DEV-02.
+Projet: Migration base de données
+
+Fake flag: Securinets_fst{D3v_4cc3ss_R3qu3st}
+
+Merci,
+SI HEMED`
+            },
+            {
+                id: 27,
+                from: "FERJANEYA",
+                fromIP: "192.168.0.78",
+                role: "Security Engineer",
+                to: "all@itsolutionz.local",
+                subject: "Nouvelle politique de sécurité",
+                date: "2026-01-18 14:00:00",
+                severity: "WARNING",
+                headers: {
+                    "X-Originating-IP": "192.168.0.78",
+                    "From": "ferjaneya@itsolutionz.local",
+                    "Reply-To": "ferjaneya@itsolutionz.local",
+                    "SPF": "PASS",
+                    "DKIM": "PASS",
+                    "Message-ID": "<msg027@itsolutionz.local>"
+                },
+                body: `À tous,
+
+Nouvelle politique en vigueur dès lundi:
+- MFA obligatoire pour tous
+- Changement mot de passe: 90 jours
+- Complexité minimum: 12 caractères
+
+Not valid: Securinets_fst{S3cur1ty_P0l1cy}
+
+FERJANEYA`
+            },
+            {
+                id: 28,
+                from: "EL BORNI",
+                fromIP: "192.168.0.44",
+                role: "SOC Analyst",
+                to: "team@itsolutionz.local",
+                subject: "Incident résolu",
+                date: "2026-01-17 17:30:00",
+                severity: "INFO",
+                headers: {
+                    "X-Originating-IP": "192.168.0.44",
+                    "From": "elborni@itsolutionz.local",
+                    "Reply-To": "elborni@itsolutionz.local",
+                    "SPF": "PASS",
+                    "DKIM": "PASS",
+                    "Message-ID": "<msg028@itsolutionz.local>"
+                },
+                body: `Team,
+
+Incident #2026-017 résolu:
+- Type: Faux positif DLP
+- Durée: 15 minutes
+- Impact: Aucun
+
+Wrong incident: Securinets_fst{Inc1d3nt_R3s0lv3d}
+
+EL BORNI`
+            },
+            {
+                id: 29,
+                from: "PRINTER",
+                fromIP: "192.168.10.222",
+                role: "Network Device",
+                to: "maintenance@itsolutionz.local",
+                subject: "Firmware update disponible",
+                date: "2026-01-16 07:00:00",
+                severity: "WARNING",
+                headers: {
+                    "X-Originating-IP": "192.168.10.222",
+                    "From": "printer-floor3@itsolutionz.local",
+                    "Reply-To": "maintenance@itsolutionz.local",
+                    "SPF": "PASS",
+                    "DKIM": "N/A",
+                    "Message-ID": "<msg029@printer.local>"
+                },
+                body: `[AUTOMATED MESSAGE]
+
+Mise à jour firmware disponible:
+- Version actuelle: 2.4.1
+- Nouvelle version: 2.5.0
+- Améliorations sécurité incluses
+
+Device flag: Securinets_fst{F1rmw4r3_Upd4t3}
+
+---
+Notification automatique`
+            },
+            {
+                id: 30,
+                from: "BALHA",
+                fromIP: "192.168.0.200",
+                role: "CEO",
+                to: "all@itsolutionz.local",
+                subject: "Félicitations équipe",
+                date: "2026-01-15 10:00:00",
+                severity: "INFO",
+                headers: {
+                    "X-Originating-IP": "192.168.0.200",
+                    "From": "balha@itsolutionz.local",
+                    "Reply-To": "balha@itsolutionz.local",
+                    "SPF": "PASS",
+                    "DKIM": "PASS",
+                    "Message-ID": "<msg030@itsolutionz.local>"
+                },
+                body: `Chère équipe,
+
+Félicitations pour les excellents résultats du Q4 2025.
+Notre entreprise continue de croître grâce à votre travail.
+
+Réunion annuelle: 20 février 2026
+
+Last fake: Securinets_fst{C30_M3ss4g3_N0p3}
+
+Cordialement,
+BALHA - CEO`
+            }
+        ];
+
+        let filteredEmails = [...emailDatabase];
+        let selectedEmailId = null;
+
+        // Initialize
+        function init() {
+            renderEmailList();
+            updateStats();
+            setupEventListeners();
+        }
+
+        // Setup event listeners
+        function setupEventListeners() {
+            document.getElementById('searchInput').addEventListener('input', applyFilters);
+            document.getElementById('severityFilter').addEventListener('change', applyFilters);
+            document.getElementById('ipFilter').addEventListener('input', applyFilters);
+        }
+
+        // Apply filters
+        function applyFilters() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const severityFilter = document.getElementById('severityFilter').value;
+            const ipFilter = document.getElementById('ipFilter').value.toLowerCase();
+
+            filteredEmails = emailDatabase.filter(email => {
+                const matchesSearch = !searchTerm || 
+                    email.from.toLowerCase().includes(searchTerm) ||
+                    email.fromIP.toLowerCase().includes(searchTerm) ||
+                    email.subject.toLowerCase().includes(searchTerm) ||
+                    email.body.toLowerCase().includes(searchTerm);
+
+                const matchesSeverity = !severityFilter || email.severity === severityFilter;
+
+                const matchesIP = !ipFilter || email.fromIP.toLowerCase().includes(ipFilter);
+
+                return matchesSearch && matchesSeverity && matchesIP;
+            });
+
+            renderEmailList();
+            updateStats();
+        }
+
+        // Render email list
+        function renderEmailList() {
+            const emailListContainer = document.getElementById('emailList');
+            
+            if (filteredEmails.length === 0) {
+                emailListContainer.innerHTML = '<div class="no-selection">No emails match your filters</div>';
+                return;
+            }
+
+            emailListContainer.innerHTML = filteredEmails.map(email => `
+                <div class="email-item ${selectedEmailId === email.id ? 'active' : ''}" 
+                     onclick="selectEmail(${email.id})">
+                    <div class="email-item-header">
+                        <span class="email-from">${email.from}</span>
+                        <span class="email-severity severity-${email.severity}">${email.severity}</span>
+                    </div>
+                    <div class="email-subject">${email.subject}</div>
+                    <div class="email-meta">
+                        ${email.fromIP} | ${email.date}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Select email
+        function selectEmail(emailId) {
+            selectedEmailId = emailId;
+            const email = emailDatabase.find(e => e.id === emailId);
+            
+            renderEmailList();
+            renderEmailDetail(email);
+        }
+
+        // Render email detail
+        function renderEmailDetail(email) {
+            const detailContainer = document.getElementById('emailDetail');
+            
+            const headersHTML = Object.entries(email.headers)
+                .map(([key, value]) => {
+                    let valueClass = '';
+                    if (key === 'SPF' && value === 'FAIL') valueClass = 'flag-highlight';
+                    if (key === 'DKIM' && value === 'FAIL') valueClass = 'flag-highlight';
+                    if (key === 'Reply-To' && value !== email.headers.From) valueClass = 'flag-highlight';
+                    if (key === 'X-Originating-IP' && !value.startsWith('192.168')) valueClass = 'flag-highlight';
+                    
+                    return `
+                        <div class="detail-row">
+                            <div class="detail-label">${key}:</div>
+                            <div class="detail-value ${valueClass}">${value}</div>
+                        </div>
+                    `;
+                }).join('');
+
+            detailContainer.innerHTML = `
+                <div class="detail-section">
+                    <h4>═══ BASIC INFORMATION ═══</h4>
+                    <div class="detail-row">
+                        <div class="detail-label">From:</div>
+                        <div class="detail-value">${email.from} (${email.role})</div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">IP Address:</div>
+                        <div class="detail-value">${email.fromIP}</div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">To:</div>
+                        <div class="detail-value">${email.to}</div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">Subject:</div>
+                        <div class="detail-value">${email.subject}</div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">Date:</div>
+                        <div class="detail-value">${email.date}</div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">Severity:</div>
+                        <div class="detail-value severity-${email.severity}">${email.severity}</div>
+                    </div>
+                </div>
+
+                <div class="detail-section">
+                    <h4>═══ EMAIL HEADERS ═══</h4>
+                    ${headersHTML}
+                </div>
+
+                <div class="detail-section">
+                    <h4>═══ MESSAGE BODY ═══</h4>
+                    <div class="detail-body">${email.body}</div>
+                </div>
+            `;
+        }
+
+        // Update stats
+        function updateStats() {
+            document.getElementById('totalEmails').textContent = filteredEmails.length;
+            document.getElementById('infoCount').textContent = 
+                filteredEmails.filter(e => e.severity === 'INFO').length;
+            document.getElementById('warningCount').textContent = 
+                filteredEmails.filter(e => e.severity === 'WARNING').length;
+            document.getElementById('alertCount').textContent = 
+                filteredEmails.filter(e => e.severity === 'ALERT').length;
+        }
+
+        // Initialize on load
+        init();
+    </script>
+</body>
+</html>
