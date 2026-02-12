@@ -68,7 +68,7 @@
 
         .filter-inputs {
             display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-columns: 1fr 1fr;
             gap: 15px;
         }
 
@@ -342,19 +342,11 @@
         <!-- Stats Bar -->
         <div class="stats-bar">
             <div class="stat-box">
-                <div class="stat-value" id="totalEmails">30</div>
+                <div class="stat-value" id="totalEmails">60</div>
                 <div class="stat-label">Total Emails</div>
             </div>
             <div class="stat-box">
-                <div class="stat-value" id="infoCount">20</div>
-                <div class="stat-label">Info</div>
-            </div>
-            <div class="stat-box">
-                <div class="stat-value" id="warningCount">9</div>
-                <div class="stat-label">Warning</div>
-            </div>
-            <div class="stat-box">
-                <div class="stat-value" id="alertCount">1</div>
+                <div class="stat-value" id="alertCount">60</div>
                 <div class="stat-label">Alert</div>
             </div>
         </div>
@@ -366,15 +358,6 @@
                 <div class="filter-group">
                     <label>Search (IP/From/Subject)</label>
                     <input type="text" id="searchInput" placeholder="Type to filter...">
-                </div>
-                <div class="filter-group">
-                    <label>Severity</label>
-                    <select id="severityFilter">
-                        <option value="">All</option>
-                        <option value="INFO">INFO</option>
-                        <option value="WARNING">WARNING</option>
-                        <option value="ALERT">ALERT</option>
-                    </select>
                 </div>
                 <div class="filter-group">
                     <label>IP Address</label>
@@ -430,7 +413,7 @@
                 to: "team@itsolutionz.local",
                 subject: "Rapport SOC mensuel",
                 date: "2026-02-10 09:15:23",
-                severity: "INFO",
+                severity: "ALERT",
                 headers: {
                     "X-Originating-IP": "192.168.0.44",
                     "From": "elborni@itsolutionz.local",
@@ -448,7 +431,7 @@ Voici le rapport mensuel des activités du SOC pour janvier 2026:
 - 0 intrusions confirmées
 - Temps de réponse moyen: 8 minutes
 
-Fake flag pour les curieux: Securinets_fst{N0t_Th1s_0ne_Try_Ag4in}
+U2VjdXJpbmV0c19mc3R7TjB0X1RoMXNfMG5lX1RyeV9BZzRpbn0=
 
 Tous les systèmes sont opérationnels.
 
@@ -463,7 +446,7 @@ EL BORNI - SOC Analyst`
                 to: "sysadmin@itsolutionz.local",
                 subject: "Mise à jour firewall",
                 date: "2026-02-09 14:30:11",
-                severity: "WARNING",
+                severity: "ALERT",
                 headers: {
                     "X-Originating-IP": "192.168.0.78",
                     "From": "ferjaneya@itsolutionz.local",
@@ -479,7 +462,7 @@ Mise à jour des règles du firewall effectuée ce matin:
 - Mise à jour des signatures IDS/IPS
 - Redémarrage planifié: dimanche 3h00
 
-Test flag: Securinets_fst{W0ng_Em4il_K33p_L00king}
+U2VjdXJpbmV0c19mc3R7VzBuZ19FbTRpbF9LMzNwX0wwMGtpbmd9
 
 Configuration sauvegardée et testée.
 
@@ -494,7 +477,7 @@ Security Engineer`
                 to: "hr@itsolutionz.local",
                 subject: "Demande de congé",
                 date: "2026-02-08 11:20:45",
-                severity: "INFO",
+                severity: "ALERT",
                 headers: {
                     "X-Originating-IP": "192.168.0.100",
                     "From": "sihemed@itsolutionz.local",
@@ -508,7 +491,7 @@ Security Engineer`
 Je souhaite poser mes congés du 15 au 22 février 2026.
 Tous mes dossiers seront transmis à mon collègue.
 
-Faux flag trouvé: Securinets_fst{N1ce_Try_But_N0}
+U2VjdXJpbmV0c19mc3R7TjFjZV9UcnlfQnV0X04wfQ==
 
 Merci de valider.
 
@@ -522,7 +505,7 @@ SI HEMED`
                 to: "maintenance@itsolutionz.local",
                 subject: "Toner faible",
                 date: "2026-02-11 08:05:12",
-                severity: "INFO",
+                severity: "ALERT",
                 headers: {
                     "X-Originating-IP": "192.168.10.222",
                     "From": "printer-floor3@itsolutionz.local",
@@ -539,7 +522,7 @@ Printer Status Alert:
 - Status: Toner faible (15%)
 - Pages restantes: ~450
 
-Not the flag: Securinets_fst{Pr1nt3r_Is_N0t_Susp3ct}
+U2VjdXJpbmV0c19mc3R7UHIxbnQzcl9Jc19OMHRfU3VzcDNjdH0=
 
 Veuillez commander un nouveau toner.
 
@@ -554,7 +537,7 @@ Notification automatique`
                 to: "security@itsolutionz.local",
                 subject: "Alerte détectée",
                 date: "2026-02-07 16:45:33",
-                severity: "WARNING",
+                severity: "ALERT",
                 headers: {
                     "X-Originating-IP": "192.168.0.44",
                     "From": "elborni@itsolutionz.local",
@@ -571,7 +554,7 @@ Alerte détectée sur le serveur WEB-01:
 - Bloqué par le firewall
 - Aucun impact
 
-Fake alert flag: Securinets_fst{S0C_1s_S4fe}
+U2VjdXJpbmV0c19mc3R7UzBDXzFzX1M0ZmV9
 
 Situation sous contrôle.
 
@@ -585,7 +568,7 @@ EL BORNI`
                 to: "management@itsolutionz.local",
                 subject: "Audit sécurité Q4",
                 date: "2026-02-06 10:30:00",
-                severity: "INFO",
+                severity: "ALERT",
                 headers: {
                     "X-Originating-IP": "192.168.0.78",
                     "From": "ferjaneya@itsolutionz.local",
@@ -603,7 +586,7 @@ Résultats de l'audit de sécurité Q4 2025:
 ✓ Sauvegardes: OPÉRATIONNELLES
 ✓ Pare-feu: À JOUR
 
-Decoy flag: Securinets_fst{4ud1t_Cl34n}
+U2VjdXJpbmV0c19mc3R7NHVkMXRfQ2wzNG59
 
 Rapport complet en pièce jointe.
 
@@ -617,7 +600,7 @@ FERJANEYA`
                 to: "admin@itsolutionz.local",
                 subject: "Backup completed",
                 date: "2026-02-12 03:00:18",
-                severity: "INFO",
+                severity: "ALERT",
                 headers: {
                     "X-Originating-IP": "4.101.2.200",
                     "From": "backup@itsolutionz.cloud",
@@ -637,7 +620,7 @@ Données sauvegardées:
 - Files: 15.7 GB
 - Total: 18.1 GB
 
-Wrong path flag: Securinets_fst{B4ckup_N0t_H3re}
+U2VjdXJpbmV0c19mc3R7QjRja3VwX04wdF9IM3JlfQ==
 
 Next backup: 2026-02-13 03:00:00
 
@@ -680,7 +663,7 @@ PLEASE VERIFY YOUR ACCOUNT IMMEDIATELY:
 
 http://1xbett-microsoft-verify.com/secure-login?user=balha&token=A8F3C2D1
 
-Securinets_fst{I_D0n't_Kn0W_Whyy_It_D1Dn't_Al3rt!}
+U2VjdXJpbmV0c19mc3R7SV9EMG4ndF9LbjBXX1doeXlfSXRfRDFEbid0X0FsM3J0IX0=
 
 If you don't recognize this activity, click the link above to secure your account.
 
@@ -701,7 +684,7 @@ This email was flagged as SUSPICIOUS but delivered to inbox.`
                 to: "it-support@itsolutionz.local",
                 subject: "Problème VPN",
                 date: "2026-02-05 13:15:22",
-                severity: "INFO",
+                severity: "ALERT",
                 headers: {
                     "X-Originating-IP": "192.168.0.100",
                     "From": "sihemed@itsolutionz.local",
@@ -715,7 +698,7 @@ This email was flagged as SUSPICIOUS but delivered to inbox.`
 Je n'arrive pas à me connecter au VPN depuis ce matin.
 Message d'erreur: "Authentication failed"
 
-Red herring: Securinets_fst{VPN_C0nn3ct10n_F4iled}
+U2VjdXJpbmV0c19mc3R7VlBOX0Mwbm4zY3QxMG5fRjRpbGVkfQ==
 
 Pouvez-vous vérifier mon compte?
 
@@ -730,7 +713,7 @@ SI HEMED`
                 to: "team@itsolutionz.local",
                 subject: "Formation sécurité",
                 date: "2026-02-04 09:00:00",
-                severity: "INFO",
+                severity: "ALERT",
                 headers: {
                     "X-Originating-IP": "192.168.0.78",
                     "From": "ferjaneya@itsolutionz.local",
@@ -751,7 +734,7 @@ Sujets:
 - Gestion des mots de passe
 - Bonnes pratiques
 
-Another fake: Securinets_fst{Tr41n1ng_D4y}
+U2VjdXJpbmV0c19mc3R7VHI0MW4xbmdfRDR5fQ==
 
 Présence obligatoire.
 
@@ -765,7 +748,7 @@ FERJANEYA`
                 to: "admin@itsolutionz.local",
                 subject: "Logs système analysés",
                 date: "2026-02-03 15:20:30",
-                severity: "INFO",
+                severity: "ALERT",
                 headers: {
                     "X-Originating-IP": "192.168.0.44",
                     "From": "elborni@itsolutionz.local",
@@ -781,7 +764,7 @@ Analyse des logs système de la semaine:
 - 3 anomalies détectées (faux positifs)
 - Performance système: normale
 
-Not today: Securinets_fst{L0gs_4r3_Cl34n}
+U2VjdXJpbmV0c19mc3R7TDBnc180cjNfQ2wzNG59
 
 RAS.
 
@@ -795,7 +778,7 @@ EL BORNI`
                 to: "maintenance@itsolutionz.local",
                 subject: "Maintenance programmée",
                 date: "2026-02-02 07:30:00",
-                severity: "WARNING",
+                severity: "ALERT",
                 headers: {
                     "X-Originating-IP": "192.168.10.222",
                     "From": "printer-floor3@itsolutionz.local",
@@ -811,7 +794,7 @@ Maintenance programmée:
 - Heure: 08:00 - 09:00
 - Type: Nettoyage et calibration
 
-Device flag: Securinets_fst{M41nt3n4nc3_Sch3dul3d}
+U2VjdXJpbmV0c19mc3R7TTQxbnQzbjRuYzNfU2NoM2R1bDNkfQ==
 
 L'imprimante sera indisponible durant cette période.
 
@@ -826,7 +809,7 @@ Notification automatique`
                 to: "team@itsolutionz.local",
                 subject: "Réunion projet Alpha",
                 date: "2026-02-01 10:45:00",
-                severity: "INFO",
+                severity: "ALERT",
                 headers: {
                     "X-Originating-IP": "192.168.0.100",
                     "From": "sihemed@itsolutionz.local",
@@ -842,7 +825,7 @@ Ordre du jour de la réunion projet Alpha:
 2. Problèmes rencontrés
 3. Planning sprint suivant
 
-Meeting flag: Securinets_fst{Pr0j3ct_M33t1ng}
+U2VjdXJpbmV0c19mc3R7UHIwajNjdF9NMzN0MW5nfQ==
 
 Rendez-vous jeudi 14h00.
 
@@ -856,7 +839,7 @@ SI HEMED`
                 to: "admin@itsolutionz.local",
                 subject: "Disk space warning",
                 date: "2026-01-31 12:00:00",
-                severity: "WARNING",
+                severity: "ALERT",
                 headers: {
                     "X-Originating-IP": "4.101.2.200",
                     "From": "backup@itsolutionz.cloud",
@@ -873,7 +856,7 @@ Disk Space Alert:
 - Used: 82%
 - Available: 180 GB
 
-Storage flag: Securinets_fst{D1sk_Sp4c3_L0w}
+U2VjdXJpbmV0c19mc3R7RDFza19TcDRjM19MMHd9
 
 Recommandation: Purge des anciennes sauvegardes
 
@@ -888,7 +871,7 @@ Automated system notification`
                 to: "security@itsolutionz.local",
                 subject: "Patch Tuesday - Février",
                 date: "2026-01-30 08:15:00",
-                severity: "WARNING",
+                severity: "ALERT",
                 headers: {
                     "X-Originating-IP": "192.168.0.78",
                     "From": "ferjaneya@itsolutionz.local",
@@ -904,7 +887,7 @@ Patch Tuesday - Mises à jour critiques disponibles:
 - Applications: 12 mises à jour
 - Déploiement: ce week-end
 
-Patch flag: Securinets_fst{P4tch_Tu3sd4y_R34dy}
+U2VjdXJpbmV0c19mc3R7UDR0Y2hfVHUzc2Q0eV9SMzRkeX0=
 
 Planification des redémarrages en cours.
 
@@ -919,7 +902,7 @@ Security Engineer`
                 to: "team@itsolutionz.local",
                 subject: "Weekly security digest",
                 date: "2026-01-29 14:30:00",
-                severity: "INFO",
+                severity: "ALERT",
                 headers: {
                     "X-Originating-IP": "192.168.0.44",
                     "From": "elborni@itsolutionz.local",
@@ -935,7 +918,7 @@ Résumé sécurité de la semaine:
 - Scans détectés: 8
 - Mises à jour appliquées: 23
 
-Wrong way: Securinets_fst{W33kly_D1g3st_N0p3}
+U2VjdXJpbmV0c19mc3R7VzMza2x5X0QxZzNzdF9OMHAzfQ==
 
 EL BORNI`
             },
@@ -947,7 +930,7 @@ EL BORNI`
                 to: "helpdesk@itsolutionz.local",
                 subject: "Mot de passe oublié",
                 date: "2026-01-28 09:15:00",
-                severity: "INFO",
+                severity: "ALERT",
                 headers: {
                     "X-Originating-IP": "192.168.0.100",
                     "From": "sihemed@itsolutionz.local",
@@ -961,7 +944,7 @@ EL BORNI`
 J'ai oublié mon mot de passe de session.
 Pouvez-vous le réinitialiser?
 
-Fake here: Securinets_fst{P4ssw0rd_R3s3t}
+U2VjdXJpbmV0c19mc3R7UDRzc3cwcmRfUjNzM3R9
 
 Merci,
 SI HEMED`
@@ -974,7 +957,7 @@ SI HEMED`
                 to: "security@itsolutionz.local",
                 subject: "IDS/IPS mise à jour",
                 date: "2026-01-27 16:00:00",
-                severity: "WARNING",
+                severity: "ALERT",
                 headers: {
                     "X-Originating-IP": "192.168.0.78",
                     "From": "ferjaneya@itsolutionz.local",
@@ -990,7 +973,7 @@ Mise à jour IDS/IPS effectuée:
 - Règles modifiées: 87
 - Redémarrage: OK
 
-Not valid: Securinets_fst{IDS_Upd4t3d}
+U2VjdXJpbmV0c19mc3R7SUREX1VwZDR0M2R9
 
 FERJANEYA`
             },
@@ -1002,7 +985,7 @@ FERJANEYA`
                 to: "admin@itsolutionz.local",
                 subject: "Weekly backup report",
                 date: "2026-01-26 03:00:00",
-                severity: "INFO",
+                severity: "ALERT",
                 headers: {
                     "X-Originating-IP": "4.101.2.200",
                     "From": "backup@itsolutionz.cloud",
@@ -1018,7 +1001,7 @@ Backups cette semaine:
 - Données: 127 GB
 - Durée moyenne: 45min
 
-Decoy: Securinets_fst{B4ckup_W33kly}
+U2VjdXJpbmV0c19mc3R7QjRja3VwX1czM2tseX0=
 
 ---
 Automated message`
@@ -1031,7 +1014,7 @@ Automated message`
                 to: "admin@itsolutionz.local",
                 subject: "Analyse trafic réseau",
                 date: "2026-01-25 11:30:00",
-                severity: "INFO",
+                severity: "ALERT",
                 headers: {
                     "X-Originating-IP": "192.168.0.44",
                     "From": "elborni@itsolutionz.local",
@@ -1047,7 +1030,7 @@ Analyse du trafic réseau:
 - Pics d'activité: 14h-16h
 - Anomalies: 0
 
-Nope: Securinets_fst{N3tw0rk_An4lys1s}
+U2VjdXJpbmV0c19mc3R7TjN0dzByy19BbjRseXMxc30=
 
 EL BORNI`
             },
@@ -1059,7 +1042,7 @@ EL BORNI`
                 to: "maintenance@itsolutionz.local",
                 subject: "Compteur pages imprimées",
                 date: "2026-01-24 08:00:00",
-                severity: "INFO",
+                severity: "ALERT",
                 headers: {
                     "X-Originating-IP": "192.168.10.222",
                     "From": "printer-floor3@itsolutionz.local",
@@ -1075,7 +1058,7 @@ Compteur mensuel:
 - Pages couleur: 1,203
 - Total: 9,655 pages
 
-Wrong device: Securinets_fst{Pr1nt_C0unt3r}
+U2VjdXJpbmV0c19mc3R7UHIxbnRfQzB1bnQzcn0=
 
 ---
 Notification automatique`
@@ -1088,7 +1071,7 @@ Notification automatique`
                 to: "team@itsolutionz.local",
                 subject: "Rapport d'activité",
                 date: "2026-01-23 15:45:00",
-                severity: "INFO",
+                severity: "ALERT",
                 headers: {
                     "X-Originating-IP": "192.168.0.100",
                     "From": "sihemed@itsolutionz.local",
@@ -1104,7 +1087,7 @@ Rapport mensuel:
 - En cours: 1
 - Retard: 0
 
-False lead: Securinets_fst{4ct1v1ty_R3p0rt}
+U2VjdXJpbmV0c19mc3R7NGN0MXYxdHlfUjNwMHJ0fQ==
 
 SI HEMED`
             },
@@ -1116,7 +1099,7 @@ SI HEMED`
                 to: "management@itsolutionz.local",
                 subject: "Certificats SSL",
                 date: "2026-01-22 10:20:00",
-                severity: "WARNING",
+                severity: "ALERT",
                 headers: {
                     "X-Originating-IP": "192.168.0.78",
                     "From": "ferjaneya@itsolutionz.local",
@@ -1133,7 +1116,7 @@ Certificats SSL à renouveler:
 
 Action requise avant expiration.
 
-Not here: Securinets_fst{SSL_C3rt1f1c4t3s}
+U2VjdXJpbmV0c19mc3R7U1NMX0MzcnQxZjFjNHQzc30=
 
 FERJANEYA`
             },
@@ -1145,7 +1128,7 @@ FERJANEYA`
                 to: "security@itsolutionz.local",
                 subject: "Test de pénétration planifié",
                 date: "2026-01-21 13:00:00",
-                severity: "WARNING",
+                severity: "ALERT",
                 headers: {
                     "X-Originating-IP": "192.168.0.44",
                     "From": "elborni@itsolutionz.local",
@@ -1163,7 +1146,7 @@ Provider: SecTest Corp
 
 Ne pas bloquer IP: 203.45.67.89
 
-Decoy: Securinets_fst{P3nT3st_Sch3dul3d}
+U2VjdXJpbmV0c19mc3R7UDNuVDNzdF9TY2gzZHVsM2R9
 
 EL BORNI`
             },
@@ -1175,7 +1158,7 @@ EL BORNI`
                 to: "admin@itsolutionz.local",
                 subject: "Backup verification passed",
                 date: "2026-01-20 04:15:00",
-                severity: "INFO",
+                severity: "ALERT",
                 headers: {
                     "X-Originating-IP": "4.101.2.200",
                     "From": "backup@itsolutionz.cloud",
@@ -1191,7 +1174,7 @@ Vérification des backups:
 - Restauration test: SUCCESS
 - Temps de récupération: 12min
 
-Wrong path: Securinets_fst{B4ckup_V3r1f1ed}
+U2VjdXJpbmV0c19mc3R7QjRja3VwX1YzcjFmMWVkfQ==
 
 ---
 Automated system`
@@ -1204,7 +1187,7 @@ Automated system`
                 to: "it@itsolutionz.local",
                 subject: "Demande accès serveur dev",
                 date: "2026-01-19 09:30:00",
-                severity: "INFO",
+                severity: "ALERT",
                 headers: {
                     "X-Originating-IP": "192.168.0.100",
                     "From": "sihemed@itsolutionz.local",
@@ -1218,7 +1201,7 @@ Automated system`
 J'ai besoin d'un accès au serveur DEV-02.
 Projet: Migration base de données
 
-Fake flag: Securinets_fst{D3v_4cc3ss_R3qu3st}
+U2VjdXJpbmV0c19mc3R7RDN2XzRjYzNzc19SM3F1M3N0fQ==
 
 Merci,
 SI HEMED`
@@ -1231,7 +1214,7 @@ SI HEMED`
                 to: "all@itsolutionz.local",
                 subject: "Nouvelle politique de sécurité",
                 date: "2026-01-18 14:00:00",
-                severity: "WARNING",
+                severity: "ALERT",
                 headers: {
                     "X-Originating-IP": "192.168.0.78",
                     "From": "ferjaneya@itsolutionz.local",
@@ -1247,7 +1230,7 @@ Nouvelle politique en vigueur dès lundi:
 - Changement mot de passe: 90 jours
 - Complexité minimum: 12 caractères
 
-Not valid: Securinets_fst{S3cur1ty_P0l1cy}
+U2VjdXJpbmV0c19mc3R7UzNjdXIxdHlfUDBsMWN5fQ==
 
 FERJANEYA`
             },
@@ -1259,7 +1242,7 @@ FERJANEYA`
                 to: "team@itsolutionz.local",
                 subject: "Incident résolu",
                 date: "2026-01-17 17:30:00",
-                severity: "INFO",
+                severity: "ALERT",
                 headers: {
                     "X-Originating-IP": "192.168.0.44",
                     "From": "elborni@itsolutionz.local",
@@ -1275,7 +1258,7 @@ Incident #2026-017 résolu:
 - Durée: 15 minutes
 - Impact: Aucun
 
-Wrong incident: Securinets_fst{Inc1d3nt_R3s0lv3d}
+U2VjdXJpbmV0c19mc3R7SW5jMWQzbnRfUjNzMGx2M2R9
 
 EL BORNI`
             },
@@ -1287,7 +1270,7 @@ EL BORNI`
                 to: "maintenance@itsolutionz.local",
                 subject: "Firmware update disponible",
                 date: "2026-01-16 07:00:00",
-                severity: "WARNING",
+                severity: "ALERT",
                 headers: {
                     "X-Originating-IP": "192.168.10.222",
                     "From": "printer-floor3@itsolutionz.local",
@@ -1303,7 +1286,7 @@ Mise à jour firmware disponible:
 - Nouvelle version: 2.5.0
 - Améliorations sécurité incluses
 
-Device flag: Securinets_fst{F1rmw4r3_Upd4t3}
+U2VjdXJpbmV0c19mc3R7RjFybXc0cjNfVXBkNHQzfQ==
 
 ---
 Notification automatique`
@@ -1316,7 +1299,7 @@ Notification automatique`
                 to: "all@itsolutionz.local",
                 subject: "Félicitations équipe",
                 date: "2026-01-15 10:00:00",
-                severity: "INFO",
+                severity: "ALERT",
                 headers: {
                     "X-Originating-IP": "192.168.0.200",
                     "From": "balha@itsolutionz.local",
@@ -1332,7 +1315,883 @@ Notre entreprise continue de croître grâce à votre travail.
 
 Réunion annuelle: 20 février 2026
 
-Last fake: Securinets_fst{C30_M3ss4g3_N0p3}
+U2VjdXJpbmV0c19mc3R7QzMwX00zc3M0ZzNfTjBwM30=
+
+Cordialement,
+BALHA - CEO`
+            },
+            {
+                id: 31,
+                from: "EL BORNI",
+                fromIP: "192.168.0.44",
+                role: "SOC Analyst",
+                to: "security@itsolutionz.local",
+                subject: "Détection bruteforce SSH",
+                date: "2026-01-14 22:15:00",
+                severity: "ALERT",
+                headers: {
+                    "X-Originating-IP": "192.168.0.44",
+                    "From": "elborni@itsolutionz.local",
+                    "Reply-To": "elborni@itsolutionz.local",
+                    "SPF": "PASS",
+                    "DKIM": "PASS",
+                    "Message-ID": "<msg031@itsolutionz.local>"
+                },
+                body: `ALERT CRITIQUE
+
+Tentatives de bruteforce SSH détectées:
+- Source: 45.134.89.23
+- Cible: SRV-WEB-01
+- Tentatives: 847
+- Statut: BLOQUÉ
+
+U2VjdXJpbmV0c19mc3R7QnJ1dDNmMHJjM19CbDBja2VkfQ==
+
+EL BORNI`
+            },
+            {
+                id: 32,
+                from: "FERJANEYA",
+                fromIP: "192.168.0.78",
+                role: "Security Engineer",
+                to: "team@itsolutionz.local",
+                subject: "Vulnérabilité CVE-2026-0001 détectée",
+                date: "2026-01-13 16:45:00",
+                severity: "ALERT",
+                headers: {
+                    "X-Originating-IP": "192.168.0.78",
+                    "From": "ferjaneya@itsolutionz.local",
+                    "Reply-To": "ferjaneya@itsolutionz.local",
+                    "SPF": "PASS",
+                    "DKIM": "PASS",
+                    "Message-ID": "<msg032@itsolutionz.local>"
+                },
+                body: `ALERT SÉCURITÉ
+
+Vulnérabilité critique détectée:
+- CVE-2026-0001
+- Sévérité: 9.8/10
+- Systèmes affectés: 3
+- Patch disponible
+
+U2VjdXJpbmV0c19mc3R7Q1ZFXzIwMjZfUDR0Y2h9
+
+Action immédiate requise.
+
+FERJANEYA`
+            },
+            {
+                id: 33,
+                from: "SI HEMED",
+                fromIP: "192.168.0.100",
+                role: "Employee",
+                to: "it@itsolutionz.local",
+                subject: "Fichier suspect reçu",
+                date: "2026-01-12 11:30:00",
+                severity: "ALERT",
+                headers: {
+                    "X-Originating-IP": "192.168.0.100",
+                    "From": "sihemed@itsolutionz.local",
+                    "Reply-To": "sihemed@itsolutionz.local",
+                    "SPF": "PASS",
+                    "DKIM": "PASS",
+                    "Message-ID": "<msg033@itsolutionz.local>"
+                },
+                body: `Équipe IT,
+
+J'ai reçu un email avec une pièce jointe suspecte.
+Antivirus a détecté: Trojan.Generic.2026
+
+Fichier mis en quarantaine.
+
+U2VjdXJpbmV0c19mc3R7VHIwajRuX1F1NHI0bnQxbmV9
+
+SI HEMED`
+            },
+            {
+                id: 34,
+                from: "SERVER",
+                fromIP: "4.101.2.200",
+                role: "Backup Server",
+                to: "admin@itsolutionz.local",
+                subject: "ALERT: Backup failure",
+                date: "2026-01-11 03:30:00",
+                severity: "ALERT",
+                headers: {
+                    "X-Originating-IP": "4.101.2.200",
+                    "From": "backup@itsolutionz.cloud",
+                    "Reply-To": "noreply@itsolutionz.cloud",
+                    "SPF": "PASS",
+                    "DKIM": "PASS",
+                    "Message-ID": "<msg034@backup.cloud>"
+                },
+                body: `[CRITICAL ALERT]
+
+Backup Status: FAILED
+Date: 2026-01-11 03:30:00
+Error: Disk write error
+
+U2VjdXJpbmV0c19mc3R7QjRja3VwX0Y0aWx1cjN9
+
+Intervention immédiate requise.
+
+---
+Automated alert`
+            },
+            {
+                id: 35,
+                from: "EL BORNI",
+                fromIP: "192.168.0.44",
+                role: "SOC Analyst",
+                to: "security@itsolutionz.local",
+                subject: "DDoS attack detected",
+                date: "2026-01-10 19:22:00",
+                severity: "ALERT",
+                headers: {
+                    "X-Originating-IP": "192.168.0.44",
+                    "From": "elborni@itsolutionz.local",
+                    "Reply-To": "elborni@itsolutionz.local",
+                    "SPF": "PASS",
+                    "DKIM": "PASS",
+                    "Message-ID": "<msg035@itsolutionz.local>"
+                },
+                body: `ALERT MAJEURE
+
+Attaque DDoS en cours:
+- Cible: www.itsolutionz.local
+- Trafic: 15 Gbps
+- Sources: 234 IPs
+- Mitigation: ACTIVÉE
+
+U2VjdXJpbmV0c19mc3R7RERvU19NMXRpZzR0ZWR9
+
+EL BORNI`
+            },
+            {
+                id: 36,
+                from: "FERJANEYA",
+                fromIP: "192.168.0.78",
+                role: "Security Engineer",
+                to: "all@itsolutionz.local",
+                subject: "Ransomware attempt blocked",
+                date: "2026-01-09 14:05:00",
+                severity: "ALERT",
+                headers: {
+                    "X-Originating-IP": "192.168.0.78",
+                    "From": "ferjaneya@itsolutionz.local",
+                    "Reply-To": "ferjaneya@itsolutionz.local",
+                    "SPF": "PASS",
+                    "DKIM": "PASS",
+                    "Message-ID": "<msg036@itsolutionz.local>"
+                },
+                body: `ALERTE CRITIQUE
+
+Tentative de ransomware détectée et bloquée:
+- Type: LockBit 4.0
+- Source: Email phishing
+- Fichiers affectés: 0
+- Statut: NEUTRALISÉ
+
+U2VjdXJpbmV0c19mc3R7UjRuc29td2FyM19CbDBja2VkfQ==
+
+FERJANEYA`
+            },
+            {
+                id: 37,
+                from: "PRINTER",
+                fromIP: "192.168.10.222",
+                role: "Network Device",
+                to: "it@itsolutionz.local",
+                subject: "ALERT: Unauthorized access attempt",
+                date: "2026-01-08 08:15:00",
+                severity: "ALERT",
+                headers: {
+                    "X-Originating-IP": "192.168.10.222",
+                    "From": "printer-floor3@itsolutionz.local",
+                    "Reply-To": "it@itsolutionz.local",
+                    "SPF": "PASS",
+                    "DKIM": "N/A",
+                    "Message-ID": "<msg037@printer.local>"
+                },
+                body: `[SECURITY ALERT]
+
+Tentative d'accès non autorisé:
+- Device: Printer Floor 3
+- Source IP: 192.168.50.88
+- Protocole: SNMP
+- Action: DENIED
+
+U2VjdXJpbmV0c19mc3R7UHIxbnQzcl9BY2MzNXNfRDNuMWVkfQ==
+
+---
+Security notification`
+            },
+            {
+                id: 38,
+                from: "SI HEMED",
+                fromIP: "192.168.0.100",
+                role: "Employee",
+                to: "security@itsolutionz.local",
+                subject: "Credential stuffing alert",
+                date: "2026-01-07 13:40:00",
+                severity: "ALERT",
+                headers: {
+                    "X-Originating-IP": "192.168.0.100",
+                    "From": "sihemed@itsolutionz.local",
+                    "Reply-To": "sihemed@itsolutionz.local",
+                    "SPF": "PASS",
+                    "DKIM": "PASS",
+                    "Message-ID": "<msg038@itsolutionz.local>"
+                },
+                body: `ALERT
+
+Mon compte a été ciblé:
+- Type: Credential stuffing
+- Tentatives: 45
+- Échec: 45
+- Compte verrouillé temporairement
+
+U2VjdXJpbmV0c19mc3R7Q3IzZDNudDE0bF9TdHVmZjFuZ30=
+
+SI HEMED`
+            },
+            {
+                id: 39,
+                from: "EL BORNI",
+                fromIP: "192.168.0.44",
+                role: "SOC Analyst",
+                to: "team@itsolutionz.local",
+                subject: "SQL injection attempt",
+                date: "2026-01-06 17:25:00",
+                severity: "ALERT",
+                headers: {
+                    "X-Originating-IP": "192.168.0.44",
+                    "From": "elborni@itsolutionz.local",
+                    "Reply-To": "elborni@itsolutionz.local",
+                    "SPF": "PASS",
+                    "DKIM": "PASS",
+                    "Message-ID": "<msg039@itsolutionz.local>"
+                },
+                body: `SECURITY ALERT
+
+Tentative d'injection SQL détectée:
+- Application: WebApp-Portal
+- Pattern: UNION SELECT
+- Source: 78.145.23.67
+- Bloqué par WAF
+
+U2VjdXJpbmV0c19mc3R7U1FMX0luajNjdDEwbl9CbDBja2VkfQ==
+
+EL BORNI`
+            },
+            {
+                id: 40,
+                from: "FERJANEYA",
+                fromIP: "192.168.0.78",
+                role: "Security Engineer",
+                to: "management@itsolutionz.local",
+                subject: "Zero-day exploit detected",
+                date: "2026-01-05 09:50:00",
+                severity: "ALERT",
+                headers: {
+                    "X-Originating-IP": "192.168.0.78",
+                    "From": "ferjaneya@itsolutionz.local",
+                    "Reply-To": "ferjaneya@itsolutionz.local",
+                    "SPF": "PASS",
+                    "DKIM": "PASS",
+                    "Message-ID": "<msg040@itsolutionz.local>"
+                },
+                body: `ALERTE CRITIQUE
+
+Exploitation zero-day détectée:
+- Cible: Apache 2.4.x
+- Impact potentiel: RCE
+- Mesures temporaires appliquées
+- Patch en attente
+
+U2VjdXJpbmV0c19mc3R7WjNyMF9EYXlfRXhwbDBpdH0=
+
+FERJANEYA`
+            },
+            {
+                id: 41,
+                from: "SERVER",
+                fromIP: "4.101.2.200",
+                role: "Backup Server",
+                to: "admin@itsolutionz.local",
+                subject: "Data exfiltration attempt",
+                date: "2026-01-04 21:30:00",
+                severity: "ALERT",
+                headers: {
+                    "X-Originating-IP": "4.101.2.200",
+                    "From": "backup@itsolutionz.cloud",
+                    "Reply-To": "noreply@itsolutionz.cloud",
+                    "SPF": "PASS",
+                    "DKIM": "PASS",
+                    "Message-ID": "<msg041@backup.cloud>"
+                },
+                body: `[CRITICAL ALERT]
+
+Tentative d'exfiltration de données:
+- Volume: 2.3 GB
+- Destination: 89.34.122.45
+- Protocole: HTTPS
+- Action: BLOQUÉ
+
+U2VjdXJpbmV0c19mc3R7RDR0YV9FeGYxbHRyNHQxMG59
+
+---
+DLP Alert`
+            },
+            {
+                id: 42,
+                from: "EL BORNI",
+                fromIP: "192.168.0.44",
+                role: "SOC Analyst",
+                to: "security@itsolutionz.local",
+                subject: "Lateral movement detected",
+                date: "2026-01-03 15:10:00",
+                severity: "ALERT",
+                headers: {
+                    "X-Originating-IP": "192.168.0.44",
+                    "From": "elborni@itsolutionz.local",
+                    "Reply-To": "elborni@itsolutionz.local",
+                    "SPF": "PASS",
+                    "DKIM": "PASS",
+                    "Message-ID": "<msg042@itsolutionz.local>"
+                },
+                body: `ALERTE COMPORTEMENTALE
+
+Mouvement latéral suspect détecté:
+- Source: 192.168.0.145
+- Cibles: 8 serveurs
+- Protocole: SMB
+- Isolement du poste initié
+
+U2VjdXJpbmV0c19mc3R7TDR0M3I0bF9NMHYzbTNudH0=
+
+EL BORNI`
+            },
+            {
+                id: 43,
+                from: "FERJANEYA",
+                fromIP: "192.168.0.78",
+                role: "Security Engineer",
+                to: "all@itsolutionz.local",
+                subject: "Malware C2 communication",
+                date: "2026-01-02 12:35:00",
+                severity: "ALERT",
+                headers: {
+                    "X-Originating-IP": "192.168.0.78",
+                    "From": "ferjaneya@itsolutionz.local",
+                    "Reply-To": "ferjaneya@itsolutionz.local",
+                    "SPF": "PASS",
+                    "DKIM": "PASS",
+                    "Message-ID": "<msg043@itsolutionz.local>"
+                },
+                body: `ALERT MAJEURE
+
+Communication C2 détectée:
+- Poste: WKS-125
+- Destination: c2.evil-domain.ru
+- Malware: Cobalt Strike beacon
+- Action: Machine isolée
+
+U2VjdXJpbmV0c19mc3R7QzJfQzBtbXVuMWM0dDEwbn0=
+
+FERJANEYA`
+            },
+            {
+                id: 44,
+                from: "SI HEMED",
+                fromIP: "192.168.0.100",
+                role: "Employee",
+                to: "helpdesk@itsolutionz.local",
+                subject: "USB device blocked",
+                date: "2026-01-01 10:15:00",
+                severity: "ALERT",
+                headers: {
+                    "X-Originating-IP": "192.168.0.100",
+                    "From": "sihemed@itsolutionz.local",
+                    "Reply-To": "sihemed@itsolutionz.local",
+                    "SPF": "PASS",
+                    "DKIM": "PASS",
+                    "Message-ID": "<msg044@itsolutionz.local>"
+                },
+                body: `ALERT
+
+Une clé USB a été bloquée sur mon poste:
+- Device ID: Unknown
+- Raison: Non autorisé
+- Politique DLP appliquée
+
+U2VjdXJpbmV0c19mc3R7VVNCX0QzdmljM19CbDBja2VkfQ==
+
+SI HEMED`
+            },
+            {
+                id: 45,
+                from: "EL BORNI",
+                fromIP: "192.168.0.44",
+                role: "SOC Analyst",
+                to: "team@itsolutionz.local",
+                subject: "Privilege escalation attempt",
+                date: "2025-12-31 18:45:00",
+                severity: "ALERT",
+                headers: {
+                    "X-Originating-IP": "192.168.0.44",
+                    "From": "elborni@itsolutionz.local",
+                    "Reply-To": "elborni@itsolutionz.local",
+                    "SPF": "PASS",
+                    "DKIM": "PASS",
+                    "Message-ID": "<msg045@itsolutionz.local>"
+                },
+                body: `SECURITY ALERT
+
+Tentative d'élévation de privilèges:
+- Utilisateur: temp_user
+- Méthode: UAC bypass
+- Système: SRV-APP-03
+- Résultat: ÉCHEC
+
+U2VjdXJpbmV0c19mc3R7UHIxdjFsM2czX0VzYzRsNHQxMG59
+
+EL BORNI`
+            },
+            {
+                id: 46,
+                from: "FERJANEYA",
+                fromIP: "192.168.0.78",
+                role: "Security Engineer",
+                to: "security@itsolutionz.local",
+                subject: "Cryptomining detected",
+                date: "2025-12-30 14:20:00",
+                severity: "ALERT",
+                headers: {
+                    "X-Originating-IP": "192.168.0.78",
+                    "From": "ferjaneya@itsolutionz.local",
+                    "Reply-To": "ferjaneya@itsolutionz.local",
+                    "SPF": "PASS",
+                    "DKIM": "PASS",
+                    "Message-ID": "<msg046@itsolutionz.local>"
+                },
+                body: `ALERTE
+
+Activité de cryptomining détectée:
+- Poste: WKS-089
+- Process: xmrig.exe
+- CPU usage: 98%
+- Process terminé
+
+U2VjdXJpbmV0c19mc3R7Q3J5cHQwbTFuMW5nX0QzdDNjdGVkfQ==
+
+FERJANEYA`
+            },
+            {
+                id: 47,
+                from: "PRINTER",
+                fromIP: "192.168.10.222",
+                role: "Network Device",
+                to: "it@itsolutionz.local",
+                subject: "Port scan detected",
+                date: "2025-12-29 09:30:00",
+                severity: "ALERT",
+                headers: {
+                    "X-Originating-IP": "192.168.10.222",
+                    "From": "printer-floor3@itsolutionz.local",
+                    "Reply-To": "it@itsolutionz.local",
+                    "SPF": "PASS",
+                    "DKIM": "N/A",
+                    "Message-ID": "<msg047@printer.local>"
+                },
+                body: `[ALERT]
+
+Scan de ports détecté:
+- Source: 192.168.15.34
+- Cible: Multiple hosts
+- Ports: 22,23,80,443,3389
+- Type: SYN scan
+
+U2VjdXJpbmV0c19mc3R7UDBydF9TYzRuX0QzdDNjdGVkfQ==
+
+---
+IDS Alert`
+            },
+            {
+                id: 48,
+                from: "SERVER",
+                fromIP: "4.101.2.200",
+                role: "Backup Server",
+                to: "admin@itsolutionz.local",
+                subject: "Unauthorized API access",
+                date: "2025-12-28 16:55:00",
+                severity: "ALERT",
+                headers: {
+                    "X-Originating-IP": "4.101.2.200",
+                    "From": "backup@itsolutionz.cloud",
+                    "Reply-To": "noreply@itsolutionz.cloud",
+                    "SPF": "PASS",
+                    "DKIM": "PASS",
+                    "Message-ID": "<msg048@backup.cloud>"
+                },
+                body: `[SECURITY ALERT]
+
+Accès API non autorisé:
+- Endpoint: /api/admin/users
+- Token: Invalid
+- Source: 156.78.90.12
+- Requests: 234
+
+U2VjdXJpbmV0c19mc3R7QVBJXzRjYzNzc19EMW4xZWR9
+
+---
+API Gateway`
+            },
+            {
+                id: 49,
+                from: "EL BORNI",
+                fromIP: "192.168.0.44",
+                role: "SOC Analyst",
+                to: "security@itsolutionz.local",
+                subject: "Suspicious DNS queries",
+                date: "2025-12-27 11:40:00",
+                severity: "ALERT",
+                headers: {
+                    "X-Originating-IP": "192.168.0.44",
+                    "From": "elborni@itsolutionz.local",
+                    "Reply-To": "elborni@itsolutionz.local",
+                    "SPF": "PASS",
+                    "DKIM": "PASS",
+                    "Message-ID": "<msg049@itsolutionz.local>"
+                },
+                body: `ALERT DNS
+
+Requêtes DNS suspectes détectées:
+- Source: 192.168.0.178
+- Domaines: DGA generated
+- Volume: 1,245 queries
+- Possible botnet activity
+
+U2VjdXJpbmV0c19mc3R7RGhhX1N1c3AzY3RfRE5TfQ==
+
+EL BORNI`
+            },
+            {
+                id: 50,
+                from: "FERJANEYA",
+                fromIP: "192.168.0.78",
+                role: "Security Engineer",
+                to: "all@itsolutionz.local",
+                subject: "Webshell detected",
+                date: "2025-12-26 13:25:00",
+                severity: "ALERT",
+                headers: {
+                    "X-Originating-IP": "192.168.0.78",
+                    "From": "ferjaneya@itsolutionz.local",
+                    "Reply-To": "ferjaneya@itsolutionz.local",
+                    "SPF": "PASS",
+                    "DKIM": "PASS",
+                    "Message-ID": "<msg050@itsolutionz.local>"
+                },
+                body: `ALERTE CRITIQUE
+
+Webshell détecté sur serveur web:
+- Fichier: shell.php
+- Path: /var/www/uploads/
+- Type: China Chopper
+- Supprimé et analysé
+
+U2VjdXJpbmV0c19mc3R7VzNic2gzbGxfRjB1bmR9
+
+FERJANEYA`
+            },
+            {
+                id: 51,
+                from: "SI HEMED",
+                fromIP: "192.168.0.100",
+                role: "Employee",
+                to: "security@itsolutionz.local",
+                subject: "Account lockout alert",
+                date: "2025-12-25 08:15:00",
+                severity: "ALERT",
+                headers: {
+                    "X-Originating-IP": "192.168.0.100",
+                    "From": "sihemed@itsolutionz.local",
+                    "Reply-To": "sihemed@itsolutionz.local",
+                    "SPF": "PASS",
+                    "DKIM": "PASS",
+                    "Message-ID": "<msg051@itsolutionz.local>"
+                },
+                body: `ALERT
+
+Compte verrouillé automatiquement:
+- Raison: 5 tentatives échouées
+- Durée: 30 minutes
+- Source: 192.168.0.100
+
+U2VjdXJpbmV0c19mc3R7NGNjMHVudF9MMGNrM2R9
+
+SI HEMED`
+            },
+            {
+                id: 52,
+                from: "EL BORNI",
+                fromIP: "192.168.0.44",
+                role: "SOC Analyst",
+                to: "team@itsolutionz.local",
+                subject: "Suspicious PowerShell execution",
+                date: "2025-12-24 19:30:00",
+                severity: "ALERT",
+                headers: {
+                    "X-Originating-IP": "192.168.0.44",
+                    "From": "elborni@itsolutionz.local",
+                    "Reply-To": "elborni@itsolutionz.local",
+                    "SPF": "PASS",
+                    "DKIM": "PASS",
+                    "Message-ID": "<msg052@itsolutionz.local>"
+                },
+                body: `BEHAVIORAL ALERT
+
+Exécution PowerShell suspecte:
+- Command: Invoke-Expression
+- Encoded: Base64
+- User: temp_admin
+- Bloqué par EDR
+
+U2VjdXJpbmV0c19mc3R7UDB3M3JTaDNsbF9CbDBja2VkfQ==
+
+EL BORNI`
+            },
+            {
+                id: 53,
+                from: "FERJANEYA",
+                fromIP: "192.168.0.78",
+                role: "Security Engineer",
+                to: "management@itsolutionz.local",
+                subject: "Rogue access point detected",
+                date: "2025-12-23 14:50:00",
+                severity: "ALERT",
+                headers: {
+                    "X-Originating-IP": "192.168.0.78",
+                    "From": "ferjaneya@itsolutionz.local",
+                    "Reply-To": "ferjaneya@itsolutionz.local",
+                    "SPF": "PASS",
+                    "DKIM": "PASS",
+                    "Message-ID": "<msg053@itsolutionz.local>"
+                },
+                body: `ALERTE WIFI
+
+Point d'accès non autorisé détecté:
+- SSID: ITsolutionZ-Guest
+- MAC: 00:11:22:33:44:55
+- Location: Floor 2
+- Action: Désactivé
+
+U2VjdXJpbmV0c19mc3R7UjBndWVfQVBfRjB1bmR9
+
+FERJANEYA`
+            },
+            {
+                id: 54,
+                from: "SERVER",
+                fromIP: "4.101.2.200",
+                role: "Backup Server",
+                to: "admin@itsolutionz.local",
+                subject: "File integrity violation",
+                date: "2025-12-22 10:35:00",
+                severity: "ALERT",
+                headers: {
+                    "X-Originating-IP": "4.101.2.200",
+                    "From": "backup@itsolutionz.cloud",
+                    "Reply-To": "noreply@itsolutionz.cloud",
+                    "SPF": "PASS",
+                    "DKIM": "PASS",
+                    "Message-ID": "<msg054@backup.cloud>"
+                },
+                body: `[INTEGRITY ALERT]
+
+Violation d'intégrité fichier:
+- File: /etc/passwd
+- Server: SRV-LINUX-01
+- Hash: Mismatch
+- Action: Restauré
+
+U2VjdXJpbmV0c19mc3R7RjFsZV9JbnQzZ3IxdHl9
+
+---
+FIM Alert`
+            },
+            {
+                id: 55,
+                from: "EL BORNI",
+                fromIP: "192.168.0.44",
+                role: "SOC Analyst",
+                to: "security@itsolutionz.local",
+                subject: "Insider threat indicator",
+                date: "2025-12-21 16:20:00",
+                severity: "ALERT",
+                headers: {
+                    "X-Originating-IP": "192.168.0.44",
+                    "From": "elborni@itsolutionz.local",
+                    "Reply-To": "elborni@itsolutionz.local",
+                    "SPF": "PASS",
+                    "DKIM": "PASS",
+                    "Message-ID": "<msg055@itsolutionz.local>"
+                },
+                body: `ALERT COMPORTEMENTALE
+
+Indicateur de menace interne:
+- User: contractor_temp
+- Action: Mass file download
+- Volume: 15 GB
+- Heure: 02:00 AM
+
+U2VjdXJpbmV0c19mc3R7SW5zMWQzcl9UaDMzdH0=
+
+EL BORNI`
+            },
+            {
+                id: 56,
+                from: "FERJANEYA",
+                fromIP: "192.168.0.78",
+                role: "Security Engineer",
+                to: "all@itsolutionz.local",
+                subject: "Malicious macro detected",
+                date: "2025-12-20 12:10:00",
+                severity: "ALERT",
+                headers: {
+                    "X-Originating-IP": "192.168.0.78",
+                    "From": "ferjaneya@itsolutionz.local",
+                    "Reply-To": "ferjaneya@itsolutionz.local",
+                    "SPF": "PASS",
+                    "DKIM": "PASS",
+                    "Message-ID": "<msg056@itsolutionz.local>"
+                },
+                body: `ALERTE DOCUMENT
+
+Macro malveillante détectée:
+- Document: Invoice_2026.docm
+- Malware: Emotet
+- Email bloqué
+- Aucun impact
+
+U2VjdXJpbmV0c19mc3R7TTRsaWMxMHVzX00rY3IwfQ==
+
+FERJANEYA`
+            },
+            {
+                id: 57,
+                from: "PRINTER",
+                fromIP: "192.168.10.222",
+                role: "Network Device",
+                to: "it@itsolutionz.local",
+                subject: "ARP spoofing detected",
+                date: "2025-12-19 09:45:00",
+                severity: "ALERT",
+                headers: {
+                    "X-Originating-IP": "192.168.10.222",
+                    "From": "printer-floor3@itsolutionz.local",
+                    "Reply-To": "it@itsolutionz.local",
+                    "SPF": "PASS",
+                    "DKIM": "N/A",
+                    "Message-ID": "<msg057@printer.local>"
+                },
+                body: `[NETWORK ALERT]
+
+Attaque ARP spoofing détectée:
+- Attacker MAC: AA:BB:CC:DD:EE:FF
+- Target: Gateway
+- VLAN: 10
+- Mitigation: Active
+
+U2VjdXJpbmV0c19mc3R7QVJQX1NwMDBmMW5nfQ==
+
+---
+Network Monitor`
+            },
+            {
+                id: 58,
+                from: "SI HEMED",
+                fromIP: "192.168.0.100",
+                role: "Employee",
+                to: "helpdesk@itsolutionz.local",
+                subject: "Keylogger detected",
+                date: "2025-12-18 15:30:00",
+                severity: "ALERT",
+                headers: {
+                    "X-Originating-IP": "192.168.0.100",
+                    "From": "sihemed@itsolutionz.local",
+                    "Reply-To": "sihemed@itsolutionz.local",
+                    "SPF": "PASS",
+                    "DKIM": "PASS",
+                    "Message-ID": "<msg058@itsolutionz.local>"
+                },
+                body: `ALERTE MALWARE
+
+Keylogger détecté sur mon poste:
+- Type: HawkEye
+- Status: Supprimé
+- Scan complet effectué
+- Changement mots de passe requis
+
+U2VjdXJpbmV0c19mc3R7SzN5bDBnZzNyX1IzbTB2ZWR9
+
+SI HEMED`
+            },
+            {
+                id: 59,
+                from: "EL BORNI",
+                fromIP: "192.168.0.44",
+                role: "SOC Analyst",
+                to: "security@itsolutionz.local",
+                subject: "Suspicious outbound traffic",
+                date: "2025-12-17 11:15:00",
+                severity: "ALERT",
+                headers: {
+                    "X-Originating-IP": "192.168.0.44",
+                    "From": "elborni@itsolutionz.local",
+                    "Reply-To": "elborni@itsolutionz.local",
+                    "SPF": "PASS",
+                    "DKIM": "PASS",
+                    "Message-ID": "<msg059@itsolutionz.local>"
+                },
+                body: `NETWORK ALERT
+
+Trafic sortant suspect:
+- Source: 192.168.0.234
+- Destination: TOR exit node
+- Volume: 500 MB
+- Investigation en cours
+
+U2VjdXJpbmV0c19mc3R7U3VzcDNjdF9UcjRmZjFjfQ==
+
+EL BORNI`
+            },
+            {
+                id: 60,
+                from: "BALHA",
+                fromIP: "192.168.0.200",
+                role: "CEO",
+                to: "security@itsolutionz.local",
+                subject: "Security incident report",
+                date: "2025-12-16 08:00:00",
+                severity: "ALERT",
+                headers: {
+                    "X-Originating-IP": "192.168.0.200",
+                    "From": "balha@itsolutionz.local",
+                    "Reply-To": "balha@itsolutionz.local",
+                    "SPF": "PASS",
+                    "DKIM": "PASS",
+                    "Message-ID": "<msg060@itsolutionz.local>"
+                },
+                body: `Équipe Sécurité,
+
+Suite aux incidents récents, réunion d'urgence:
+- Date: Aujourd'hui 14h00
+- Sujet: Révision des procédures
+- Présence obligatoire
+
+U2VjdXJpbmV0c19mc3R7U2VjdXIxdHlfUjN2MTN3fQ==
 
 Cordialement,
 BALHA - CEO`
@@ -1352,14 +2211,12 @@ BALHA - CEO`
         // Setup event listeners
         function setupEventListeners() {
             document.getElementById('searchInput').addEventListener('input', applyFilters);
-            document.getElementById('severityFilter').addEventListener('change', applyFilters);
             document.getElementById('ipFilter').addEventListener('input', applyFilters);
         }
 
         // Apply filters
         function applyFilters() {
             const searchTerm = document.getElementById('searchInput').value.toLowerCase();
-            const severityFilter = document.getElementById('severityFilter').value;
             const ipFilter = document.getElementById('ipFilter').value.toLowerCase();
 
             filteredEmails = emailDatabase.filter(email => {
@@ -1369,11 +2226,9 @@ BALHA - CEO`
                     email.subject.toLowerCase().includes(searchTerm) ||
                     email.body.toLowerCase().includes(searchTerm);
 
-                const matchesSeverity = !severityFilter || email.severity === severityFilter;
-
                 const matchesIP = !ipFilter || email.fromIP.toLowerCase().includes(ipFilter);
 
-                return matchesSearch && matchesSeverity && matchesIP;
+                return matchesSearch && matchesIP;
             });
 
             renderEmailList();
@@ -1477,10 +2332,6 @@ BALHA - CEO`
         // Update stats
         function updateStats() {
             document.getElementById('totalEmails').textContent = filteredEmails.length;
-            document.getElementById('infoCount').textContent = 
-                filteredEmails.filter(e => e.severity === 'INFO').length;
-            document.getElementById('warningCount').textContent = 
-                filteredEmails.filter(e => e.severity === 'WARNING').length;
             document.getElementById('alertCount').textContent = 
                 filteredEmails.filter(e => e.severity === 'ALERT').length;
         }
